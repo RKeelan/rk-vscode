@@ -17,7 +17,30 @@
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
-  "contributes": {},
+  "contributes": {
+    "commands": [
+      {
+        "command": "rk-vscode.copyPath",
+        "title": "Copy Path"
+      },
+      {
+        "command": "rk-vscode.copyRelativePath",
+        "title": "Copy Relative Path"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "rk-vscode.copyPath",
+          "group": "9_cutcopypaste@100"
+        },
+        {
+          "command": "rk-vscode.copyRelativePath",
+          "group": "9_cutcopypaste@101"
+        }
+      ]
+    }
+  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
