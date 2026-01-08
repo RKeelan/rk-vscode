@@ -1,0 +1,4 @@
+out/
+node_modules/
+*.vsix
+settings.local.json
