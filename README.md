@@ -3,6 +3,7 @@
 A VS Code extension by and for RKeelan.
 
 1
+2
 ## Installation
 
 ```bash
