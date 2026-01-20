@@ -3,6 +3,7 @@
 // OSC 1 (icon name only) is intentionally ignored since VS Code terminals don't have icons
 
 // Regex to match OSC 0 or OSC 2 sequences with BEL (\x07) or ST (\x1b\\) terminators
+// eslint-disable-next-line no-control-regex
 const OSC_REGEX = /\x1b\](?:0|2);([^\x07\x1b]*?)(?:\x07|\x1b\\)/;
 
 export interface ParseResult {
