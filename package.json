@@ -50,7 +50,7 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "lint": "eslint src",
+    "lint": "eslint src --ext .ts",
     "test": "npm run compile && mocha out/test/**/*.test.js"
   },
   "devDependencies": {
