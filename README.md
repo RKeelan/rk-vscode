@@ -1,5 +1,7 @@
 # rk-vscode
 
+[![CI](https://github.com/RKeelan/rk-vscode/actions/workflows/ci.yml/badge.svg)](https://github.com/RKeelan/rk-vscode/actions/workflows/ci.yml)
+
 A VS Code extension by and for RKeelan.
 
 ## Installation
