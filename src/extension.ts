@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { parseOscTitle, hasPartialOscSequence, extractPartialSequence } from './oscParser';
+import { buildOpenGrokUrl } from './opengrok';
 
 // Buffer to accumulate partial OSC sequences across data events
 const terminalBuffers = new Map<vscode.Terminal, string>();
@@ -89,6 +90,31 @@ async function copyPathWithLineNumber(relative: boolean): Promise<void> {
     await vscode.env.clipboard.writeText(result);
 }
 
+async function copyOpenGrokPath(): Promise<void> {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+        vscode.window.showWarningMessage('No active editor');
+        return;
+    }
+
+    const document = editor.document;
+    if (document.isUntitled) {
+        vscode.window.showWarningMessage('File has not been saved');
+        return;
+    }
+
+    const filePath = document.uri.fsPath;
+    const lineNumber = editor.selection.start.line + 1;
+    const url = buildOpenGrokUrl(filePath, lineNumber);
+
+    if (!url) {
+        vscode.window.showWarningMessage('File is not under /src/');
+        return;
+    }
+
+    await vscode.env.clipboard.writeText(url);
+}
+
 export function activate(context: vscode.ExtensionContext) {
     outputChannel = vscode.window.createOutputChannel('rk-vscode');
     log('Extension activated');
@@ -101,6 +127,9 @@ export function activate(context: vscode.ExtensionContext) {
         }),
         vscode.commands.registerCommand('rk-vscode.copyRelativePath', () => {
             copyPathWithLineNumber(true);
+        }),
+        vscode.commands.registerCommand('rk-vscode.copyOpenGrokPath', () => {
+            copyOpenGrokPath();
         }),
         vscode.window.onDidWriteTerminalData((event) => {
             handleTerminalData(event.terminal, event.data);
