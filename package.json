@@ -2,7 +2,7 @@
   "name": "rk-vscode",
   "displayName": "rk-vscode",
   "description": "A VS Code extension by and for RKeelan",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "rkeelan",
   "license": "MIT",
   "repository": {
@@ -10,7 +10,7 @@
     "url": "https://github.com/rkeelan/rk-vscode"
   },
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.109.0"
   },
   "enabledApiProposals": [
     "terminalDataWriteEvent"
@@ -31,6 +31,10 @@
       {
         "command": "rk-vscode.copyRelativePath",
         "title": "Copy Relative Path"
+      },
+      {
+        "command": "rk-vscode.copyOpenGrokPath",
+        "title": "Copy OpenGrok Path"
       }
     ],
     "menus": {
@@ -42,6 +46,11 @@
         {
           "command": "rk-vscode.copyRelativePath",
           "group": "9_cutcopypaste@101"
+        },
+        {
+          "command": "rk-vscode.copyOpenGrokPath",
+          "group": "9_cutcopypaste@102",
+          "when": "resourcePath =~ /^\\/src\\/.*/"
         }
       ]
     }
